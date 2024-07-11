@@ -4,7 +4,13 @@ import { WINDOW_PROVIDERS } from './helpers/window.helpers';
 import { NgModule } from '@angular/core';
 // import { NgForm } from "@angular/forms";
 import { CommonModule } from '@angular/common';
-import { NguCarouselModule } from "@ngu/carousel";
+import {
+  NguCarousel,
+  NguCarouselDefDirective,
+  NguCarouselNextDirective,
+  NguCarouselPrevDirective,
+  NguItemComponent, NguTileComponent
+} from '@ngu/carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LandingRoutingModule } from './landing-routing.module';
 import { ServicesComponent } from './components/services/services.component';
@@ -39,7 +45,13 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     LandingRoutingModule,
-    NguCarouselModule,
+    NguCarousel,
+    NguTileComponent,
+    NguCarousel,
+    NguCarouselDefDirective,
+    NguCarouselNextDirective,
+    NguCarouselPrevDirective,
+    NguItemComponent,
     NgbModule,
       MatIconModule,
 
