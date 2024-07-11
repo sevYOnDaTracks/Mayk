@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: "app-contact-form",
-  templateUrl: "./contact-form.component.html",
-  styleUrls: ["./contact-form.component.scss"],
+  selector: 'app-contact-form',
+  templateUrl: './contact-form.component.html',
+  styleUrls: ['./contact-form.component.scss'],
   animations: [SharedAnimations]
 })
 export class ContactFormComponent implements OnInit {
@@ -16,7 +16,7 @@ export class ContactFormComponent implements OnInit {
     'message': null,
 
   };
- staticAlertClosed : true;
+ staticAlertClosed: true;
   error = null;
   success: any = null;
   constructor() {}
@@ -28,7 +28,7 @@ export class ContactFormComponent implements OnInit {
     this.formValues.name = form.value.name;
     this.formValues.subject = form.value.subject;
     this.formValues.message = form.value.message;
-    this.success=true;
+    this.success = true;
 
 
 

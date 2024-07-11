@@ -1,0 +1,28 @@
+.bg-image {
+  background-image: url('../../../../assets/images/log.jpg'); /* Remplacez par l'URL de votre image */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+
+.login-card {
+  max-width: 500px; /* Augmenter la largeur maximale */
+  width: 100%;
+  margin: auto;
+  padding: 70px; /* Augmenter le padding */
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+}
+
+.icon-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.person-icon {
+  font-size: 20px; /* Taille de l'icône agrandie */
+  color: #050505; /* Couleur de l'icône */
+}

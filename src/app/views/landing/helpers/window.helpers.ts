@@ -1,12 +1,12 @@
-import { ClassProvider, FactoryProvider, InjectionToken, Injectable } from "@angular/core";
+import { ClassProvider, FactoryProvider, InjectionToken, Injectable } from '@angular/core';
 
 export function _window(): any {
   return window;
 }
-export const WINDOW = new InjectionToken("WindowToken");
+export const WINDOW = new InjectionToken('WindowToken');
 export abstract class WindowRef {
   get nativeWindow(): Window {
-    throw new Error("Not implemented.");
+    throw new Error('Not implemented.');
   }
 }
 @Injectable()

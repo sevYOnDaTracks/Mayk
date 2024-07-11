@@ -4,8 +4,7 @@
       <div class="col-md-12 section-header mb-5">
         <h2 class="fw-bold">Nos services</h2>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ea
-          quam laborum, ducimus, laboriosam sint dolorum aspernatur libero.
+            Nous sommes une structure qui aide les étudiants dans leurs démarches d'études à l'étranger, notamment pour obtenir un visa, des admissions ainsi que des logements.
         </p>
       </div>
 
@@ -13,21 +12,24 @@
         <div class="row">
           <div class="col-md-6 col-sm-6 mb-4">
             <div class="card">
-              <div class="card-body pt-4 pb-4 text-center">
-                <i class="eva eva-clock-outline text-36"></i>
-                <h4 class="card-title pt-2 fw-medium">Time Tracking</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing .</p>
+              <div class="card-body pt-4 pb-4 text-center" (click)="openPopUpAdmissionInfo()" >
+                  <mat-icon>school</mat-icon>
+                  <h4 class="card-title pt-2 fw-medium">Admissions</h4>
+                <p>Plus de 3 pays dans notre catalogue .</p>
               </div>
+                <div style="margin-bottom: 23px"></div>
+                <button class="btn btn-gradient half-button" matTooltip="Consulter" (click)="openPopUpAdmissionInfo()">Voir +</button>
             </div>
           </div>
           <!-- end of left card col-6 -->
           <div class="col-md-6 col-sm-6 mb-4">
             <div class="card">
               <div class="card-body pt-4 pb-4 text-center">
-                <i class="eva eva-shopping-bag-outline text-36"></i>
-                <h4 class="card-title pt-2 fw-medium">Sales Report</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing .</p>
+                  <mat-icon>hotel</mat-icon>
+                <h4 class="card-title pt-2 fw-medium">Hébergement</h4>
+                <p>Recherche de logement / Fourniture de documents</p>
               </div>
+                <button class="btn btn-gradient half-button" matTooltip="Consulter" (click)="openPopUpAdmissionInfo()">Voir +</button>
             </div>
           </div>
           <!-- end of left card col-6 -->
@@ -35,8 +37,8 @@
             <div class="card">
               <div class="card-body pt-4 pb-4 text-center">
                 <i class="eva eva-lock-outline text-36"></i>
-                <h4 class="card-title pt-2 fw-medium">Data Safety</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing .</p>
+                <h4 class="card-title pt-2 fw-medium">Procédure de visa</h4>
+                <p>France , Canada et Belgique</p>
               </div>
             </div>
           </div>
@@ -45,8 +47,8 @@
             <div class="card">
               <div class="card-body pt-4 pb-4 text-center">
                 <i class="eva eva-people-outline text-36"></i>
-                <h4 class="card-title pt-2 fw-medium">Contracts</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing .</p>
+                <h4 class="card-title pt-2 fw-medium">Garantie financière</h4>
+                <p>Pour la france le Canada et la Belgique .</p>
               </div>
             </div>
           </div>
@@ -58,7 +60,7 @@
         class="col-md-12 col-sm-12 col-lg-5 offset-lg-1 d-flex align-items-center"
       >
         <img
-          src="./assets/images/landing/svg/features2.svg"
+          src="./assets/images/landing/lOGO_d/logo.png"
           class="img-responsive w-100"
           alt=""
         />

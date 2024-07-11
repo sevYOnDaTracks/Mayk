@@ -5,9 +5,7 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './landing-v10.component.html',
   styleUrls: ['./landing-v10.component.scss']
 })
-export class LandingV10Component implements OnInit {
+export class LandingV10Component  {
   backgroundColor = 'landing-gradient-cristal-clear';
   constructor() {}
-
-  ngOnInit() {}
 }

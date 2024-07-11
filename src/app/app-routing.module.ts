@@ -8,11 +8,6 @@ const routes: Routes = [
     loadChildren: () =>
           import('./views/landing/landing.module').then((m) => m.LandingModule),
   },
-  {
-    path: '',
-    loadChildren: () =>
-        import('./views/sessions/sessions.module').then((m) => m.SessionsModule),
-  },
 ];
 
 @NgModule({

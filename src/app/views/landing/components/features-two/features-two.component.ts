@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-features-two',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeaturesTwoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private matSnackbar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
+  openPopUpAdmissionInfo() {
+this.matSnackbar.open('Pas encore disponible' , 'ok');
+  }
 }
