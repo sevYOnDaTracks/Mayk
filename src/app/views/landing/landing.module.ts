@@ -27,7 +27,6 @@ import { LeftImageComponent } from './components/left-image/left-image.component
 import { RightImageComponent } from './components/right-image/right-image.component';
 import { TeamComponent } from './components/team/team.component';
 import { NewsComponent } from './components/news/news.component';
-import { FaqsComponent } from './components/faqs/faqs.component';
 import { NewsTwoComponent } from './components/news-two/news-two.component';
 import { IntroThreeComponent } from './components/intro-three/intro-three.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -53,8 +52,7 @@ import { MatIconModule } from '@angular/material/icon';
     NguCarouselPrevDirective,
     NguItemComponent,
     NgbModule,
-      MatIconModule,
-
+    MatIconModule,
     FormsModule
   ],
   declarations: [
@@ -72,7 +70,6 @@ import { MatIconModule } from '@angular/material/icon';
     RightImageComponent,
     TeamComponent,
     NewsComponent,
-    FaqsComponent,
     NewsTwoComponent,
     IntroThreeComponent,
     HeaderComponent,
