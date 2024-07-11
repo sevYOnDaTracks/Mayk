@@ -165,3 +165,8 @@ a {
     -webkit-text-decoration-skip: objects;
   }
 }
+
+.logo-img {
+  width: 250px; /* Ajuste la largeur selon tes besoins */
+  height: auto; /* Conserve le ratio d'aspect de l'image */
+}

@@ -1,61 +1,56 @@
-<div
-  class="card o-hidden"
-  [@animate]="{
-    value: '*',
-    params: { y: '120px', opacity: '0', delay: '100ms', duration: '400ms' }
-  }"
->
-  <div class="row">
-    <div
-      class="col-md-6 text-center"
-      style="
-        background-size: cover;
-        background-image: url(./assets/images/landing/Bg/bg.jpeg);
-      "
-    >
-      <div class="ps-3 auth-right">
-        <button
-          class="btn btn-primary btn-block btn-icon"
-          routerLink="/sessions/signin"
-        >
-          Sign in with Email
-        </button>
-        <button class="btn btn-primary btn-block btn-icon btn-google">
-          Sign in with Google
-        </button>
-        <button class="btn btn-primary btn-block btn-icon btn-facebook">
-          Sign in with Facebook
-        </button>
-      </div>
-    </div>
+<nav
+        id="home-header"
+        [ngClass]="{ 'header-fixed': true }"
+        class="navbar navbar-expand-lg text-16 bg"
 
-    <div class="col-md-6">
-      <div class="p-4">
-        <div class="auth-logo text-center mb-4">
-          <img src="./assets/images/landing/lOGO_d/logo_white.png" alt="" />
+>
+    <div class="container">
+        <div class="d-flex justify-content-between flex-grow-1 mobile_menu">
+            <!-- <a class="navbar-brand d-none d-lg-inline-block" href="#">
+          Navbar 6
+        </a> -->
+
+
         </div>
-        <h1 class="mb-3 text-18">Sign Up</h1>
-        <!-- <p class="mb-4 text-muted font-small">Lorem ipsum dolor sit amet.</p> -->
-        <form action="">
-          <div class="form-group">
-            <label for="username">Your name</label>
-            <input id="username" class="form-control" type="text" />
-          </div>
-          <div class="form-group">
-            <label for="email">Email address</label>
-            <input id="email" class="form-control" type="email" />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input id="password" class="form-control" type="password" />
-          </div>
-          <div class="form-group">
-            <label for="repassword">Retype password</label>
-            <input id="repassword" class="form-control" type="password" />
-          </div>
-          <button class="btn btn-primary btn-block mt-2">Sign Up</button>
-        </form>
-      </div>
+        <div
+                class="collapse navbar-collapse flex-grow-1 text-end"
+                id="collapseExample"
+
+        >
+            <ul class="navbar-nav ms-auto flex-nowrap">
+                <li class="nav-item">
+                    <a
+                            href="#"
+                            scrollTo="intro-wrap"
+                            class="nav-link m-2 menu-item nav-active"
+                    >Accueil</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                            href="#"
+                            scrollTo="features-wrap"
+                            class="nav-link m-2 menu-item nav-active"
+                    >Nos services</a
+                    >
+                </li>
+                <li  class="nav-item">
+                    <a href="#" scrollTo="teams-wrap" class="nav-link m-2 menu-item">Notre équipe</a>
+                </li>
+
+                <!-- drop down menu end -->
+                <li  class="nav-item">
+                    <a href="#" scrollTo="pricing-wrap" class="nav-link m-2 menu-item"
+                    >Nos tarifs</a
+                    >
+                </li>
+
+                <li  class="nav-item">
+                    <a href="#" scrollTo="contacts-wrap" class="nav-link m-2 menu-item"
+                    >Nous contacter ?</a
+                    >
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
-</div>
+</nav>
