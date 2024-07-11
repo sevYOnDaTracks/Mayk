@@ -27,7 +27,7 @@
     "@ngu/carousel": "7.0.0",
     "@popperjs/core": "^2.11.6",
     "@swimlane/ngx-datatable": "^20.0.0",
-    "angular-in-memory-web-api": "^0.14.0",
+    "angular-in-memory-web-api": "^0.15.0",
     "angular2-wizard": "^0.4.0",
     "bootstrap": "^5.2.1",
     "core-js": "^3.25.1",
