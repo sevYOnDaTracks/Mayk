@@ -33,6 +33,7 @@ import { FormsModule } from '@angular/forms';
 import { DemosComponent } from './components/demos/demos.component';
 import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
 import { BlogDetailsPageComponent } from './blog-details-page/blog-details-page.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { BlogDetailsPageComponent } from './blog-details-page/blog-details-page.
     LandingRoutingModule,
     NguCarouselModule,
     NgbModule,
+      MatIconModule,
 
     FormsModule
   ],

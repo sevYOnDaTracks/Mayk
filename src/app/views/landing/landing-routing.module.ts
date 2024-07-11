@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     component: LandingV10Component
-  }
+  },
 ];
 
 @NgModule({
