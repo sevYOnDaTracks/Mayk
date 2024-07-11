@@ -22,13 +22,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { IntroTenComponent } from './components/intro-ten/intro-ten.component';
 import { LandingV10Component } from './landing-v10/landing-v10.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BlogDetailsPageComponent } from './blog-details-page/blog-details-page.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatDialogModule} from '@angular/material/dialog';
 import {MatTooltip, MatTooltipModule} from '@angular/material/tooltip';
 import {LoginComponent} from './login/login.component';
+
 
 @NgModule({
   imports: [
@@ -45,16 +46,17 @@ import {LoginComponent} from './login/login.component';
     MatIconModule,
     MatSnackBarModule,
     MatDialogModule,
-      MatTooltipModule,
-    FormsModule
+    MatTooltipModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
+    HeaderComponent,
     PricingOneComponent,
     ContactFormComponent,
     FooterComponent,
     FeaturesTwoComponent,
     TeamComponent,
-    HeaderComponent,
     ScrollToDirective,
     IntroTenComponent,
     LandingV10Component,
@@ -62,7 +64,7 @@ import {LoginComponent} from './login/login.component';
     LoginComponent
   ],
   exports: [
-    HeaderComponent
+      HeaderComponent
   ],
   providers: [WINDOW_PROVIDERS]
 
