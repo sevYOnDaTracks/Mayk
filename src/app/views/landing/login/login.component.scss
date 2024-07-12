@@ -1,18 +1,27 @@
+.container-fluid {
+  background: #ffffff; /* Couleur de fond pour toute la page */
+}
+
 .bg-image {
-  background-image: url('../../../../assets/images/log.jpg'); /* Remplacez par l'URL de votre image */
+  background-image: url('../../../../assets/images/img_1.png'); /* Remplacez par l'URL de votre image */
   background-size: cover;
   background-position: center;
   height: 100vh;
+  filter: brightness(0.6); /* Légère diminution de la luminosité pour une meilleure lisibilité */
 }
 
-
 .login-card {
-  max-width: 500px; /* Augmenter la largeur maximale */
+  max-width: 500px;
   width: 100%;
   margin: auto;
-  padding: 70px; /* Augmenter le padding */
-  background: rgb(255, 255, 255);
+  padding: 70px;
+  background: #ffffff;
   border-radius: 8px;
+
+}
+
+.login-card:hover {
+  transform: translateY(-5px); /* Léger déplacement vers le haut au hover */
 }
 
 .icon-container {
@@ -23,6 +32,45 @@
 }
 
 .person-icon {
-  font-size: 20px; /* Taille de l'icône agrandie */
+
   color: #050505; /* Couleur de l'icône */
+}
+
+
+.logo {
+  width: 100px; /* Taille du logo */
+  height: 100px; /* Taille du logo */
+  border-radius: 50%; /* Forme circulaire */
+  margin-bottom: 20px; /* Espace en dessous du logo */
+  object-fit: cover; /* Assurer que l'image s'adapte bien */
+  border: 1px solid #ededed; /* Bordure colorée autour du logo */
+}
+
+.btn-dark {
+  background-color: #343a40;
+  border-color: #343a40;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px; /* Ajustez la hauteur selon vos besoins */
+  position: relative;
+}
+
+.btn-dark:hover {
+  background-color: #23272b;
+  border-color: #1d2124;
+}
+
+.form-control {
+  border-radius: 0.25rem;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.btn-dark .mat-spinner {
+  color: #ffffff; /* Couleur du spinner blanche */
+  position: absolute; /* Positionnement absolu pour centrer */
 }

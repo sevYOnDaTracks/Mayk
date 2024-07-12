@@ -8,6 +8,11 @@ const routes: Routes = [
     loadChildren: () =>
           import('./views/landing/landing.module').then((m) => m.LandingModule),
   },
+  {
+    path: 'admin',
+    loadChildren: () =>
+        import('./views/admin/admin.module').then((m) => m.AdminModule),
+  }
 ];
 
 @NgModule({

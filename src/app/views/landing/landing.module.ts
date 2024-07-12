@@ -29,7 +29,12 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatDialogModule} from '@angular/material/dialog';
 import {MatTooltip, MatTooltipModule} from '@angular/material/tooltip';
 import {LoginComponent} from './login/login.component';
-
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {RegisterComponent} from './register/register.component';
 
 @NgModule({
   imports: [
@@ -48,7 +53,12 @@ import {LoginComponent} from './login/login.component';
     MatDialogModule,
     MatTooltipModule,
     FormsModule,
-    ReactiveFormsModule
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+      MatButtonModule,
+    MatInputModule,
+      MatProgressSpinnerModule
   ],
   declarations: [
     HeaderComponent,
@@ -61,7 +71,8 @@ import {LoginComponent} from './login/login.component';
     IntroTenComponent,
     LandingV10Component,
     BlogDetailsPageComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   exports: [
       HeaderComponent

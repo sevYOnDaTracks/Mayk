@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/compat/app';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import firebase from 'firebase/compat/app';
 export class AuthenticationService {
   user$: Observable<firebase.User | null>;
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
     this.user$ = afAuth.authState;
   }
 
@@ -23,6 +25,10 @@ export class AuthenticationService {
 
   registerWithEmail(email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password);
+  }
+
+  saveUserData(user: User) {
+    return this.firestore.collection('users').doc(user.uid).set({ ...user });
   }
 
   logout() {
