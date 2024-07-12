@@ -1,21 +1,31 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar>
+    <mat-toolbar >
         <button mat-icon-button (click)="snav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
         <h1 class="example-app-name">Maykconsulting</h1>
         <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-            <mat-icon>person</mat-icon>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/admin/user">
+                <mat-icon>person</mat-icon>
+                <span>Mon Compte</span>
+            </button>
+            <button (click)="signOut()" mat-menu-item>
+                <mat-icon>power</mat-icon>
+                <span>Déconnexion</span>
+            </button>
+        </mat-menu>
     </mat-toolbar>
 
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
         <mat-sidenav #snav class="custom-sidenav" [mode]="mobileQuery.matches ? 'over' : 'side'"
-                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="isSidenavOpened">
             <mat-nav-list>
                 <ng-container *ngFor="let nav of fillerNav; trackBy: trackByFn">
-                    <a mat-list-item [routerLink]="nav.path">
+                    <a mat-list-item (click)="snav.toggle()" [routerLink]="nav.path" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                         <mat-icon>{{ nav.icon }}</mat-icon>
                         {{ nav.label }}
                     </a>
@@ -27,5 +37,4 @@
             <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
-
 </div>

@@ -41,7 +41,7 @@ export class RegisterComponent {
   register() {
     if (this.registerForm.valid) {
       this.loading = true;
-      const { email, password, firstName, lastName, phone, birthDate, degreeLevel } = this.registerForm.value;
+      const { email, password, firstName, lastName, phone, birthDate, degreeLevel , photoURL } = this.registerForm.value;
       const parsedBirthDate = new Date(birthDate); // Convert string to Date
       this.authService.registerWithEmail(email, password).then(userCredential => {
         const userId = userCredential.user?.uid;
@@ -51,6 +51,7 @@ export class RegisterComponent {
             firstName,
             lastName,
             phone,
+            photoURL,
             birthDate: parsedBirthDate,
             degreeLevel,
             email

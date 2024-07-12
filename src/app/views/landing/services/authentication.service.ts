@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import firebase from 'firebase/compat/app';
 import { User } from '../model/user';
 
@@ -33,5 +34,55 @@ export class AuthenticationService {
 
   logout() {
     return this.afAuth.signOut();
+  }
+
+  getUserData(uid: string): Observable<User | null> {
+    return this.firestore.collection('users').doc<User>(uid).valueChanges().pipe(
+        switchMap(user => {
+          if (user) {
+            return this.afAuth.user.pipe(
+                map(firebaseUser => {
+                  if (firebaseUser) {
+                    return {
+                      ...user,
+                      email: firebaseUser.email || null,
+                      birthDate: user.birthDate ? (user.birthDate as any).toDate() : null
+                    };
+                  }
+                  return null;
+                })
+            );
+          }
+          return of(null);
+        })
+    );
+  }
+
+  get authenticatedUser$(): Observable<User | null> {
+    return this.user$.pipe(
+        switchMap(user => {
+          if (user) {
+            return this.getUserData(user.uid);
+          } else {
+            return of(null);
+          }
+        })
+    );
+  }
+
+  async getCurrentUser(): Promise<User | null> {
+    const currentUser = await this.afAuth.currentUser;
+    if (currentUser) {
+      const userSnapshot = await this.firestore.collection('users').doc<User>(currentUser.uid).get().toPromise();
+      const userData = userSnapshot?.data() || null;
+      if (userData) {
+        return {
+          ...userData,
+          email: currentUser.email || null,
+          birthDate: userData.birthDate ? (userData.birthDate as any).toDate() : null
+        };
+      }
+    }
+    return null;
   }
 }

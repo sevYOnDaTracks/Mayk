@@ -15,7 +15,7 @@ export const sidenavOptions: SidenavOption[] = [
     {
         icon: 'person',
         path: '/admin/user',
-        label: 'Mes infos',
+        label: 'Mon compte',
     },
 
     // Ajoutez d'autres options ici selon vos besoins
