@@ -2,7 +2,6 @@
 import { ScrollToDirective } from './helpers/scrollTo.directives';
 import { WINDOW_PROVIDERS } from './helpers/window.helpers';
 import { NgModule } from '@angular/core';
-// import { NgForm } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import {
   NguCarousel,
@@ -75,7 +74,8 @@ import {RegisterComponent} from './register/register.component';
     RegisterComponent
   ],
   exports: [
-      HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   providers: [WINDOW_PROVIDERS]
 

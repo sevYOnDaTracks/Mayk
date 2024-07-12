@@ -1,1 +1,31 @@
-<p>home works!</p>
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar>
+        <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="example-app-name">Maykconsulting</h1>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>person</mat-icon>
+        </button>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+        <mat-sidenav #snav class="custom-sidenav" [mode]="mobileQuery.matches ? 'over' : 'side'"
+                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+            <mat-nav-list>
+                <ng-container *ngFor="let nav of fillerNav; trackBy: trackByFn">
+                    <a mat-list-item [routerLink]="nav.path">
+                        <mat-icon>{{ nav.icon }}</mat-icon>
+                        {{ nav.label }}
+                    </a>
+                </ng-container>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>

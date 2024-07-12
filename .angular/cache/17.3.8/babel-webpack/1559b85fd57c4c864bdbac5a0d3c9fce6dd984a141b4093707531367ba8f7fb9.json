@@ -1,0 +1,1 @@
+{"ast":null,"code":"// sidenav-data.ts\nexport const sidenavOptions = [{\n  icon: 'home',\n  path: '/admin/',\n  label: 'Accueil'\n}, {\n  icon: 'person',\n  path: '/admin/user',\n  label: 'Mes infos'\n}\n// Ajoutez d'autres options ici selon vos besoins\n];","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
