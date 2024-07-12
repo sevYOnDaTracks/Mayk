@@ -4,9 +4,9 @@
             <mat-card class="user-card">
                 <mat-card-header>
                     <div mat-card-avatar class="user-avatar">
-                        <img [src]="user.photoURL || 'https://via.placeholder.com/150'" alt="User Photo">
+                        <img [src]="user.photoUrl || 'https://via.placeholder.com/150'" alt="User Photo">
                     </div>
-                    <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>
+                    <mat-card-title>{{ user.lastName }} {{ user.firstName }}</mat-card-title>
                     <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
@@ -54,6 +54,9 @@
                                 </mat-form-field>
                             </div>
                         </div>
+                        <div class="row">
+
+                        </div>
                     </form>
                 </mat-card-content>
                 <mat-card-actions align="end">
@@ -65,8 +68,6 @@
         </div>
     </div>
 </div>
-
-
 
 <ng-template #loading>
     <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">

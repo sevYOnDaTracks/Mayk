@@ -4,8 +4,9 @@ import { User } from '../../../landing/model/user';
 import { AuthenticationService } from '../../../landing/services/authentication.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { niveauEtude } from '../data/niveauEtude.data';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
@@ -17,10 +18,11 @@ export class UserInfoComponent implements OnInit {
   isEditing = false;
   niveauxEtude = niveauEtude;
   selectedFiles: { [key: string]: File | null } = {
-    photoIdentite: null,
+    photoUrl: null,
     cni: null,
     passport: null
   };
+
   constructor(
       private auth: AuthenticationService,
       private fb: FormBuilder,
@@ -33,7 +35,8 @@ export class UserInfoComponent implements OnInit {
       phone: [{ value: '', disabled: true }],
       birthDate: [{ value: '', disabled: true }],
       degreeLevel: [{ value: '', disabled: true }],
-      email: [{ value: '', disabled: true }]
+      email: [{ value: '', disabled: true }],
+      photoUrl: [{ value: '', disabled: true }]
     });
   }
 
@@ -58,16 +61,28 @@ export class UserInfoComponent implements OnInit {
       this.auth.getCurrentUser().then(currentUser => {
         if (currentUser) {
           const updatedUser: User = { ...this.userForm.value, uid: currentUser.uid };
-          this.auth.saveUserData(updatedUser).then(() => {
-            this.isEditing = false;
-            this.userForm.disable();
-            this.userForm.get('email')?.disable(); // Assurez-vous que l'e-mail reste désactivé
-          }).catch(error => {
-            console.error('Error updating user data: ', error);
-          });
+          if (this.selectedFiles.photoIdentite) {
+            this.auth.uploadPhoto(currentUser.uid, this.selectedFiles.photoIdentite).then(photoURL => {
+              updatedUser.photoUrl = photoURL;
+              this.saveUserData(updatedUser);
+            });
+          } else {
+            this.saveUserData(updatedUser);
+          }
         }
       });
     }
+  }
+
+  saveUserData(user: User): void {
+    this.auth.saveUserData(user).then(() => {
+      this._snackBar.open('Informations mise à jour', 'ok');
+      this.isEditing = false;
+      this.userForm.disable();
+      this.userForm.get('email')?.disable(); // Assurez-vous que l'e-mail reste désactivé
+    }).catch(error => {
+      console.error('Error updating user data: ', error);
+    });
   }
 
   signOut(): void {
@@ -79,4 +94,10 @@ export class UserInfoComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: Event, field: string): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFiles[field] = input.files[0];
+    }
+  }
 }

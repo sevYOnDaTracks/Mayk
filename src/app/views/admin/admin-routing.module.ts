@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {UserInfoComponent} from './components/user-info/user-info.component';
 import {HomeContentComponent} from './components/home-content/home-content.component';
+import {HebergementComponent} from './components/hebergement/hebergement.component';
+import {FinanceComponent} from './components/finance/finance.component';
+import {AdmissionComponent} from './components/admission/admission.component';
 
 const routes: Routes = [
   {
@@ -11,6 +14,9 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeContentComponent },
       { path: 'user', component: UserInfoComponent },
+      { path: 'hebergement', component: HebergementComponent },
+      { path: 'finance', component: FinanceComponent },
+      { path: 'admission', component: AdmissionComponent },
       // Ajoutez d'autres routes enfants ici
     ]
   },

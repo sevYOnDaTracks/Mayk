@@ -24,7 +24,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import {HebergementComponent} from './components/hebergement/hebergement.component';
 import { MatSelectModule} from '@angular/material/select';
+import {FinanceComponent} from './components/finance/finance.component';
+import {AdmissionComponent} from './components/admission/admission.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { MatSelectModule} from '@angular/material/select';
     HomeComponent,
     FooterComponent,
     UserInfoComponent,
-    HomeContentComponent
+    HomeContentComponent,
+    HebergementComponent,
+    FinanceComponent,
+    AdmissionComponent
   ],
   imports: [
     CommonModule,

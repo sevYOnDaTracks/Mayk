@@ -1,6 +1,6 @@
 // src/app/models/user.model.ts
 export interface User {
-    photoURL: string;
+    photoUrl: string;
     uid: string;
     firstName: string;
     lastName: string;

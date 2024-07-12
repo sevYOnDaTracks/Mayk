@@ -28,7 +28,8 @@ export class RegisterComponent {
       degreeLevel: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      photoUrl: ['empty']
     }, {
       validator: this.passwordMatchValidator
     });
@@ -41,7 +42,7 @@ export class RegisterComponent {
   register() {
     if (this.registerForm.valid) {
       this.loading = true;
-      const { email, password, firstName, lastName, phone, birthDate, degreeLevel , photoURL } = this.registerForm.value;
+      const { email, password, firstName, lastName, phone, birthDate, degreeLevel , photoUrl } = this.registerForm.value;
       const parsedBirthDate = new Date(birthDate); // Convert string to Date
       this.authService.registerWithEmail(email, password).then(userCredential => {
         const userId = userCredential.user?.uid;
@@ -51,7 +52,7 @@ export class RegisterComponent {
             firstName,
             lastName,
             phone,
-            photoURL,
+            photoUrl,
             birthDate: parsedBirthDate,
             degreeLevel,
             email

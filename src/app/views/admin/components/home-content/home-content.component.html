@@ -1,1 +1,54 @@
-<p>home-content works!</p>
+<div class="container mt-5" *ngIf="user$ | async as user; else loading">
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h2>Hello {{ user.lastName }} {{ user.firstName }} !</h2>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-12">
+            <mat-card class="text-center">
+                <mat-card-header>
+                    <mat-card-title></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Que souhaitez-vous comme prestation ?</p>
+                    <button routerLink="/admin/hebergement" mat-raised-button color="primary" class="m-2">Hebergement <mat-icon>weekend</mat-icon></button>
+                    <button routerLink="/admin/admission" mat-raised-button color="dark" class="m-2">Admissions <mat-icon>school</mat-icon></button>
+                    <button routerLink="/admin/finance" mat-raised-button color="accent" class="m-2">Garant Financier <mat-icon>work</mat-icon></button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-12">
+            <mat-card class="text-center">
+                <mat-card-header>
+                    <mat-card-title></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-card-subtitle *ngIf="!user.photoUrl" class="p-2" style="background-color: #fff3cd;justify-content: center">
+                        Hey nous n'avons toujours pas reçu ta photo d'identité
+                    </mat-card-subtitle>
+                    <p class="mt-2">Souhaitez-vous gérer vos informations ? C'est par ici !</p>
+                    <button routerLink="/admin/user" mat-icon-button color="primary">
+                        <mat-icon>person</mat-icon>
+                    </button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-12 text-center">
+            <p>Pour toutes questions veuillez nous contacter par mail sur : <a href="mailto:maykconsulting@gmail.com">{{ 'maykconsulting@gmail.com' }}</a></p>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <mat-spinner diameter="90"></mat-spinner>
+    </div>
+</ng-template>

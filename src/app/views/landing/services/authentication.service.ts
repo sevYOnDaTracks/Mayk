@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage'; // Ajouter ceci pour Firebase Storage
 import { map, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import firebase from 'firebase/compat/app';
@@ -12,7 +13,11 @@ import { User } from '../model/user';
 export class AuthenticationService {
   user$: Observable<firebase.User | null>;
 
-  constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
+  constructor(
+      private afAuth: AngularFireAuth,
+      private firestore: AngularFirestore,
+      private storage: AngularFireStorage // Injecter AngularFireStorage
+  ) {
     this.user$ = afAuth.authState;
   }
 
@@ -84,5 +89,13 @@ export class AuthenticationService {
       }
     }
     return null;
+  }
+
+  // Ajouter la méthode pour télécharger la photo
+  async uploadPhoto(uid: string, file: File): Promise<string> {
+    const filePath = `users/${uid}/${file.name}`;
+    const fileRef = this.storage.ref(filePath);
+    await fileRef.put(file);
+    return await fileRef.getDownloadURL().toPromise();
   }
 }
