@@ -5,7 +5,10 @@
         </button>
        <h1> Maykconsulting</h1>
         <span class="example-spacer"></span>
-        <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" aria-label="Example icon-button with share icon">
+        <button routerLink="/admin" mat-icon-button class="example-icon">
+            <mat-icon>home</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" >
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">

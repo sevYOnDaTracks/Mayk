@@ -29,6 +29,8 @@ import { MatSelectModule} from '@angular/material/select';
 import {FinanceComponent} from './components/finance/finance.component';
 import {AdmissionComponent} from './components/admission/admission.component';
 import {ParcoursComponent} from './components/parcours/parcours.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import {ParcoursComponent} from './components/parcours/parcours.component';
     HebergementComponent,
     FinanceComponent,
     AdmissionComponent,
-      ParcoursComponent
+      ParcoursComponent,
+
+
   ],
   imports: [
     CommonModule,
@@ -64,7 +68,9 @@ import {ParcoursComponent} from './components/parcours/parcours.component';
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule,
+      MatRadioModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },

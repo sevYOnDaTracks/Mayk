@@ -91,25 +91,29 @@
             <div align="center"><p><strong>Tous les documents sont obligatoires (Passeport et/ou pièce d'identités). </strong></p></div>
             <div class="row">
                 <div class="col-md-6">
-                    <mat-card class="mb-4">
+                    <mat-card class="mb-4" *ngIf="user.identityPhotoUrl == '' || user.cniUrl == '' || user.passportUrl == ''">
                         <mat-card-header class="mb-2">
-                            <mat-card-title>Importer des documents</mat-card-title>
+                            <mat-card-title><div align="center">Ajouter / Modifier documents</div></mat-card-title>
                         </mat-card-header>
                         <mat-card-content>
                             <table class="import-table">
-                                <tr class="import-item mb-4">
+                                <tr *ngIf="!user.identityPhotoUrl" class="import-item mb-4">
                                     <td class="mb-4">Photo d'identité</td>
                                     <td><input type="file" (change)="uploadDocument($event, 'identityPhoto')"></td>
+                                    <br>
+                                    <br>
                                 </tr>
-                                <br>
-                                <tr class="import-item mb-4">
+
+                                <tr *ngIf="!user.cniUrl" class="import-item mb-4">
                                     <td class="mb-4">CNI</td>
                                     <td><input type="file" (change)="uploadDocument($event, 'cni')"></td>
+                                    <br>
+                                    <br>
                                 </tr>
-                                <br>
-                                <tr class="import-item mb-4">
-                                    <td class="mb-4">Passeport</td>
-                                    <td><input type="file" (change)="uploadDocument($event, 'passport')"></td>
+
+                                <tr *ngIf="!user.passportUrl" class="import-item mb-4">
+                                    <td class="mb-4">Passport </td>
+                                    <td><input style="justify-content: end" type="file" (change)="uploadDocument($event, 'passport')" matTooltip="passport"></td>
                                 </tr>
                                 <br>
                             </table>
@@ -119,7 +123,7 @@
                 <div class="col-md-6">
                     <mat-card class="mb-4">
                         <mat-card-header class="mb-2">
-                            <mat-card-title>Récapitulatif de mes documents</mat-card-title>
+                            <mat-card-title></mat-card-title>
                         </mat-card-header>
                         <mat-card-content>
                             <table class="document-summary">
@@ -130,7 +134,7 @@
                                         <button mat-button *ngIf="user.identityPhotoUrl" (click)="viewDocument(user.identityPhotoUrl)">
                                             <mat-icon>visibility</mat-icon> Voir
                                         </button>
-                                        <span *ngIf="!user.identityPhotoUrl" class="text-danger">A joindre</span>
+                                        <span *ngIf="!user.identityPhotoUrl" class="text-danger">A joindre *</span>
                                     </td>
                                 </tr>
                                 <tr class="document-item">
@@ -140,23 +144,26 @@
                                         <button mat-button *ngIf="user.cniUrl" (click)="viewDocument(user.cniUrl)">
                                             <mat-icon>visibility</mat-icon> Voir
                                         </button>
-                                        <span *ngIf="!user.cniUrl" class="text-danger">Facultatif (Obligatoire si vous n'avez pas encore de passeport)</span>
+                                        <span *ngIf="!user.cniUrl" class="text-danger">A joindre *</span>
                                     </td>
                                 </tr>
                                 <tr class="document-item">
                                     <td>Passeport</td>
                                     <td>
+
+                                        <button *ngIf="user.passportUrl" mat-stroked-button color="warn" (click)="deleteDocument('passport')">Retirer</button>
                                         <button mat-button *ngIf="user.passportUrl" (click)="viewDocument(user.passportUrl)">
                                             <mat-icon>visibility</mat-icon> Voir
                                         </button>
-                                        <button *ngIf="user.passportUrl" mat-stroked-button color="warn" (click)="deleteDocument('passport')">Retirer</button>
-                                        <span *ngIf="!user.passportUrl" class="text-danger">A joindre</span>
+                                        <span *ngIf="!user.passportUrl" class="text-danger">A joindre *</span>
                                     </td>
                                 </tr>
                             </table>
                         </mat-card-content>
                     </mat-card>
                 </div>
+                <br>
+                <div align="center"><p><strong><u class="text-danger">NB</u>: Si vous souhaitez mettre à jour un document veuillez d'abord le retirer </strong></p></div>
             </div>
         </div>
     </mat-tab>
