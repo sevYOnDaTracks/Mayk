@@ -1,0 +1,36 @@
+mat-card {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+mat-card-title h1, mat-card-title h2 {
+  font-size: 36px;
+  color: #4a4a4a;
+}
+
+mat-card-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+mat-card-content p {
+  font-size: 16px;
+  color: #6a6a6a;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}

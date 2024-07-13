@@ -20,7 +20,8 @@ export class UserInfoComponent implements OnInit {
   selectedFiles: { [key: string]: File | null } = {
     photoUrl: null,
     cni: null,
-    passport: null
+    passport: null,
+    identityPhoto: null
   };
 
   constructor(
@@ -36,7 +37,10 @@ export class UserInfoComponent implements OnInit {
       birthDate: [{ value: '', disabled: true }],
       degreeLevel: [{ value: '', disabled: true }],
       email: [{ value: '', disabled: true }],
-      photoUrl: [{ value: '', disabled: true }]
+      photoUrl: [{ value: '', disabled: true }],
+      cniUrl: [{ value: '', disabled: true }],
+      passportUrl: [{ value: '', disabled: true }],
+      identityPhotoUrl: [{ value: '', disabled: true }]
     });
   }
 
@@ -61,14 +65,7 @@ export class UserInfoComponent implements OnInit {
       this.auth.getCurrentUser().then(currentUser => {
         if (currentUser) {
           const updatedUser: User = { ...this.userForm.value, uid: currentUser.uid };
-          if (this.selectedFiles.photoIdentite) {
-            this.auth.uploadPhoto(currentUser.uid, this.selectedFiles.photoIdentite).then(photoURL => {
-              updatedUser.photoUrl = photoURL;
-              this.saveUserData(updatedUser);
-            });
-          } else {
             this.saveUserData(updatedUser);
-          }
         }
       });
     }
@@ -94,10 +91,31 @@ export class UserInfoComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: Event, field: string): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.selectedFiles[field] = input.files[0];
+  async uploadDocument(event: any, documentType: string): Promise<void> {
+    const file = event.target.files[0];
+    if (file) {
+      const currentUser = await this.auth.getCurrentUser();
+      if (currentUser) {
+        const documentUrl = await this.auth.uploadDocument(file, currentUser.uid, documentType);
+        await this.auth.updateUserDocument(currentUser.uid, documentType, documentUrl);
+        this._snackBar.open(`${documentType} mis à jour`, 'ok');
+        this.selectedFiles[documentType] = null;
+        this.userForm.get(`${documentType}Url`)?.setValue(documentUrl);
+      }
     }
+  }
+
+  async deleteDocument(documentType: string): Promise<void> {
+    const currentUser = await this.auth.getCurrentUser();
+    if (currentUser) {
+      await this.auth.deleteDocument(currentUser.uid, documentType);
+      await this.auth.updateUserDocument(currentUser.uid, documentType, '');
+      this._snackBar.open(`${documentType} supprimé`, 'ok');
+      this.userForm.get(`${documentType}Url`)?.setValue('');
+    }
+  }
+
+  viewDocument(url: string): void {
+    window.open(url, '_blank');
   }
 }

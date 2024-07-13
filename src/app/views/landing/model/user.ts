@@ -8,4 +8,7 @@ export interface User {
     birthDate: Date; // You may want to use Date type instead
     degreeLevel: string;
     email: string;
+    cniUrl?: string;
+    passportUrl?: string;
+    identityPhotoUrl?: string;
 }

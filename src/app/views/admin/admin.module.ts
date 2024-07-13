@@ -28,6 +28,7 @@ import {HebergementComponent} from './components/hebergement/hebergement.compone
 import { MatSelectModule} from '@angular/material/select';
 import {FinanceComponent} from './components/finance/finance.component';
 import {AdmissionComponent} from './components/admission/admission.component';
+import {ParcoursComponent} from './components/parcours/parcours.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {AdmissionComponent} from './components/admission/admission.component';
     HomeContentComponent,
     HebergementComponent,
     FinanceComponent,
-    AdmissionComponent
+    AdmissionComponent,
+      ParcoursComponent
   ],
   imports: [
     CommonModule,

@@ -91,11 +91,21 @@ export class AuthenticationService {
     return null;
   }
 
-  // Ajouter la méthode pour télécharger la photo
-  async uploadPhoto(uid: string, file: File): Promise<string> {
-    const filePath = `users/${uid}/${file.name}`;
+  async uploadDocument(file: File, userId: string, documentType: string): Promise<string> {
+    const filePath = `documents/${userId}/${documentType}`;
     const fileRef = this.storage.ref(filePath);
-    await fileRef.put(file);
-    return await fileRef.getDownloadURL().toPromise();
+    await this.storage.upload(filePath, file);
+    return fileRef.getDownloadURL().toPromise();
   }
+
+  async deleteDocument(userId: string, documentType: string): Promise<void> {
+    const filePath = `documents/${userId}/${documentType}`;
+    await this.storage.ref(filePath).delete().toPromise();
+  }
+
+  async updateUserDocument(userId: string, documentType: string, documentUrl: string): Promise<void> {
+    await this.firestore.collection('users').doc(userId).update({ [`${documentType}Url`]: documentUrl });
+  }
+
+
 }

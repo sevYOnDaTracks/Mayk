@@ -18,6 +18,11 @@ export const sidenavOptions: SidenavOption[] = [
         label: 'Mon compte',
     },
     {
+        icon: 'menu_book',
+        path: '/admin/parcours',
+        label: 'Mon Parcours',
+    },
+    {
         icon: 'school',
         path: '/admin/admission',
         label: 'Admission',

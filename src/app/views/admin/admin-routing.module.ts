@@ -6,6 +6,7 @@ import {HomeContentComponent} from './components/home-content/home-content.compo
 import {HebergementComponent} from './components/hebergement/hebergement.component';
 import {FinanceComponent} from './components/finance/finance.component';
 import {AdmissionComponent} from './components/admission/admission.component';
+import {ParcoursComponent} from './components/parcours/parcours.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'hebergement', component: HebergementComponent },
       { path: 'finance', component: FinanceComponent },
       { path: 'admission', component: AdmissionComponent },
+      { path: 'parcours', component: ParcoursComponent },
       // Ajoutez d'autres routes enfants ici
     ]
   },

@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './finance.component.scss'
 })
 export class FinanceComponent {
-
+  submitRequest() {
+    console.log('Demande soumise');
+  }
 }
