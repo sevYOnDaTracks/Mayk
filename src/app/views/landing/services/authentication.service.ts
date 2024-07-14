@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AngularFireStorage } from '@angular/fire/compat/storage'; // Ajouter ceci pour Firebase Storage
-import { map, Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 import firebase from 'firebase/compat/app';
 import { User } from '../model/user';
 
@@ -11,14 +11,28 @@ import { User } from '../model/user';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private userSubject = new BehaviorSubject<User | null>(null);
   user$: Observable<firebase.User | null>;
 
   constructor(
       private afAuth: AngularFireAuth,
       private firestore: AngularFirestore,
-      private storage: AngularFireStorage // Injecter AngularFireStorage
+      private storage: AngularFireStorage
   ) {
     this.user$ = afAuth.authState;
+    this.initializeUser();
+  }
+
+  private initializeUser() {
+    this.user$.pipe(
+        switchMap(user => {
+          if (user) {
+            return this.getUserData(user.uid);
+          } else {
+            return of(null);
+          }
+        })
+    ).subscribe(user => this.userSubject.next(user));
   }
 
   loginWithGoogle() {
@@ -38,7 +52,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    return this.afAuth.signOut();
+    return this.afAuth.signOut().then(() => this.userSubject.next(null));
   }
 
   getUserData(uid: string): Observable<User | null> {
@@ -64,15 +78,7 @@ export class AuthenticationService {
   }
 
   get authenticatedUser$(): Observable<User | null> {
-    return this.user$.pipe(
-        switchMap(user => {
-          if (user) {
-            return this.getUserData(user.uid);
-          } else {
-            return of(null);
-          }
-        })
-    );
+    return this.userSubject.asObservable();
   }
 
   async getCurrentUser(): Promise<User | null> {
@@ -106,6 +112,4 @@ export class AuthenticationService {
   async updateUserDocument(userId: string, documentType: string, documentUrl: string): Promise<void> {
     await this.firestore.collection('users').doc(userId).update({ [`${documentType}Url`]: documentUrl });
   }
-
-
 }

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const pays = [{\n  name: 'France',\n  description: 'Campus France / Parcours Sup'\n}, {\n  name: 'Canada',\n  description: 'CEGEP / Université'\n}\n// Ajoutez d'autres options ici selon vos besoins\n];","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

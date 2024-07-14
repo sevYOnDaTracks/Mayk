@@ -60,6 +60,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTabsModule,
     MatButtonModule,
     MatInputModule,
+    MatRadioModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatSidenavModule,
@@ -69,8 +70,10 @@ import {MatRadioModule} from '@angular/material/radio';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+
     MatStepperModule,
-      MatRadioModule
+
+
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },

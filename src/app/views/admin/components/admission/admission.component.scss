@@ -1,17 +1,60 @@
-.demo-stepper {
-  margin-top: 8px;
+.full-width {
+  width: 100%;
 }
 
-.demo-form-field {
-  margin-top: 16px;
-}
-
-.demo-radio-group {
+.row {
   display: flex;
-  flex-direction: column;
-  margin: 15px 0;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
 }
 
-.demo-radio-button {
-  margin: 5px;
+.col-lg-6, .col-md-6, .col-sm-12, .col-12 {
+  padding: 0 10px;
 }
+
+.mt-5 {
+  margin-top: 3rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.p-4 {
+  padding: 1.5rem;
+}
+
+.stepper-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.file-name {
+  margin-left: 10px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .justificatif-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .file-name {
+    text-align: center;
+    margin-top: 5px;
+  }
+  .mat-form-field {
+    width: 100%;
+  }
+}
+

@@ -1,43 +1,49 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar style="background-color: rgba(214,214,214,0.33)" class="mat-elevation-z2"  >
+    <mat-toolbar style="background-color: rgba(214,214,214,0.33)" class="mat-elevation-z2">
         <button mat-icon-button (click)="snav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-       <h1> Maykconsulting</h1>
+
+        <h1>Maykconsulting</h1>
         <span class="example-spacer"></span>
-        <button routerLink="/admin" mat-icon-button class="example-icon">
-            <mat-icon>home</mat-icon>
-        </button>
-        <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" >
-            <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/admin/user">
-                <mat-icon>person</mat-icon>
-                <span>Mon Compte</span>
-            </button>
-            <button (click)="signOut()" mat-menu-item>
-                <mat-icon>power</mat-icon>
-                <span>Déconnexion</span>
-            </button>
-        </mat-menu>
-    </mat-toolbar>
 
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
-        <mat-sidenav #snav class="custom-sidenav" [mode]="mobileQuery.matches ? 'over' : 'side'"
-                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="isSidenavOpened">
-            <mat-nav-list>
-                <ng-container *ngFor="let nav of fillerNav; trackBy: trackByFn">
-                    <a mat-list-item (click)="snav.toggle()" [routerLink]="nav.path" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-                      <span><mat-icon>{{ nav.icon }}</mat-icon></span>
-                        {{ nav.label }}
-                    </a>
-                </ng-container>
-            </mat-nav-list>
-        </mat-sidenav>
+       <!-- <span *ngIf="user" class="user-name">{{ user.firstName }} {{ user.lastName }}</span> -->
+          <img *ngIf="user" [src]="user.identityPhotoUrl || 'https://via.placeholder.com/40'" alt="User Photo" class="user-photo">
 
-        <mat-sidenav-content>
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
-</div>
+         <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
+             <mat-icon>more_vert</mat-icon>
+         </button>
+         <mat-menu #menu="matMenu">
+             <button  mat-menu-item  routerLink="/admin">
+                 <mat-icon>home</mat-icon>
+                 <span>Accueil</span>
+             </button>
+             <button mat-menu-item routerLink="/admin/user">
+                 <mat-icon>person</mat-icon>
+                 <span>Mon Compte</span>
+             </button>
+             <button (click)="signOut()" mat-menu-item>
+                 <mat-icon>power</mat-icon>
+                 <span>Déconnexion</span>
+             </button>
+         </mat-menu>
+     </mat-toolbar>
+
+     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+         <mat-sidenav #snav class="custom-sidenav" [mode]="mobileQuery.matches ? 'over' : 'side'"
+                      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="isSidenavOpened">
+             <mat-nav-list>
+                 <ng-container *ngFor="let nav of fillerNav; trackBy: trackByFn">
+                     <a mat-list-item (click)="snav.toggle()" [routerLink]="nav.path" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                         <span><mat-icon>{{ nav.icon }}</mat-icon></span>
+                         {{ nav.label }}
+                     </a>
+                 </ng-container>
+             </mat-nav-list>
+         </mat-sidenav>
+
+         <mat-sidenav-content>
+             <router-outlet></router-outlet>
+         </mat-sidenav-content>
+     </mat-sidenav-container>
+ </div>
