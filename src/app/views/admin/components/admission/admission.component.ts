@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { User } from '../../../landing/model/user';
 import { AuthenticationService } from '../../../landing/services/authentication.service';
+import { AdmissionService } from '../../services/admission.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -49,7 +50,6 @@ export class AdmissionComponent implements OnInit {
   selectedField: string;
   selectedLevel: string;
 
-  // Ajoutez ces propriétés pour stocker les noms de fichiers
   fileNames: { [key: string]: string } = {};
   bacFileName = '';
   campusFranceFileName = '';
@@ -57,7 +57,12 @@ export class AdmissionComponent implements OnInit {
   @ViewChild('bacFileInput') bacFileInput: ElementRef;
   @ViewChild('campusFranceFileInput') campusFranceFileInput: ElementRef;
 
-  constructor(private fb: FormBuilder, private auth: AuthenticationService, private snackBar: MatSnackBar) {}
+  constructor(
+      private fb: FormBuilder,
+      private auth: AuthenticationService,
+      private admissionService: AdmissionService,
+      private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.educationForm = this.fb.group({
@@ -77,25 +82,18 @@ export class AdmissionComponent implements OnInit {
       termAverageTerminale3: [''],
       averageYear1Sem1: [''],
       averageYear1Sem2: [''],
-      commentYear1Sem1: [''],
-      commentYear1Sem2: [''],
       averageYear2Sem1: [''],
       averageYear2Sem2: [''],
-      commentYear2Sem1: [''],
-      commentYear2Sem2: [''],
       averageYear3Sem1: [''],
       averageYear3Sem2: [''],
-      commentYear3Sem1: [''],
-      commentYear3Sem2: [''],
       averageYear4Sem1: [''],
       averageYear4Sem2: [''],
-      commentYear4Sem1: [''],
-      commentYear4Sem2: [''],
       averageYear5Sem1: [''],
       averageYear5Sem2: [''],
-      commentYear5Sem1: [''],
-      commentYear5Sem2: [''],
-      comments: [''], // Nouveau champ pour les commentaires
+      comments: [''],
+      bacUrl: [''],
+      campusFranceUrl: [''],
+      // Add more fields for document URLs if needed
     });
 
     this.user$ = this.auth.authenticatedUser$;
@@ -145,6 +143,8 @@ export class AdmissionComponent implements OnInit {
     if (input.files.length > 0) {
       const file = input.files[0];
       this.fileNames[key] = file.name;
+      // Save file for uploading later
+      this.uploadFile(file, key);
     }
   }
 
@@ -153,6 +153,8 @@ export class AdmissionComponent implements OnInit {
     if (input.files.length > 0) {
       const file = input.files[0];
       this.bacFileName = file.name;
+      // Save file for uploading later
+      this.uploadFile(file, 'bac');
     }
   }
 
@@ -161,14 +163,34 @@ export class AdmissionComponent implements OnInit {
     if (input.files.length > 0) {
       const file = input.files[0];
       this.campusFranceFileName = file.name;
+      // Save file for uploading later
+      this.uploadFile(file, 'campusFrance');
     }
   }
 
-  submitForm(): void {
+  async uploadFile(file: File, documentType: string): Promise<void> {
+    const currentUser = await this.auth.getCurrentUser();
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const fileUrl = await this.admissionService.uploadDocument(file, userId, documentType);
+      // Save file URL in the form data
+      this.educationForm.get(documentType + 'Url').setValue(fileUrl);
+    }
+  }
+
+  async submitForm(): Promise<void> {
     if (this.educationForm.valid) {
-      this.snackBar.open('Demande d\'admissions soumise', 'Fermer', {
-        duration: 3000,
-      });
+      try {
+        const formData = this.educationForm.value;
+        await this.admissionService.submitAdmissionForm(formData);
+        this.snackBar.open('Demande d\'admission soumise', 'Fermer', {
+          duration: 3000,
+        });
+      } catch (error) {
+        this.snackBar.open('Erreur lors de la soumission', 'Fermer', {
+          duration: 3000,
+        });
+      }
     }
   }
 }
