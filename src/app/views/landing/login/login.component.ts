@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent {
   loginForm: FormGroup;
   loading = false;
+  passwordVisible = false;
 
   constructor(
       public auth: AuthenticationService,
@@ -40,6 +41,16 @@ export class LoginComponent {
       });
     } else {
       this.snackBar.open('Veuillez renseigner tous les champs !' , 'ok');
+    }
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+    const passwordField = document.getElementById('password') as HTMLInputElement;
+    if (this.passwordVisible) {
+      passwordField.type = 'text';
+    } else {
+      passwordField.type = 'password';
     }
   }
 }

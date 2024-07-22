@@ -1,76 +1,118 @@
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
 .container-fluid {
-  background: #ffffff; /* Couleur de fond pour toute la page */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .bg-image {
-  background-image: url('../../../../assets/images/img_1.png'); /* Remplacez par l'URL de votre image */
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  filter: brightness(0.6); /* Légère diminution de la luminosité pour une meilleure lisibilité */
-}
-
-.login-card {
-  max-width: 500px;
-  width: 100%;
-  margin: auto;
-  padding: 70px;
-  background: #ffffff;
-  border-radius: 8px;
-
-}
-
-.login-card:hover {
-  transform: translateY(-5px); /* Léger déplacement vers le haut au hover */
-}
-
-.icon-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.person-icon {
-
-  color: #050505; /* Couleur de l'icône */
-}
-
-
-.logo {
-  width: 100px; /* Taille du logo */
-  height: 100px; /* Taille du logo */
-  border-radius: 50%; /* Forme circulaire */
-  margin-bottom: 20px; /* Espace en dessous du logo */
-  object-fit: cover; /* Assurer que l'image s'adapte bien */
-  border: 1px solid #ededed; /* Bordure colorée autour du logo */
-}
-
-.btn-dark {
-  background-color: #343a40;
-  border-color: #343a40;
-  color: #ffffff;
-  padding: 10px 20px;
-  font-size: 16px;
+  background: linear-gradient(120deg, #1e3c72 0%, #059856 100%);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px; /* Ajustez la hauteur selon vos besoins */
   position: relative;
 }
 
-.btn-dark:hover {
-  background-color: #23272b;
-  border-color: #1d2124;
+.login-card {
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info-card {
+  text-align: center;
+  color: white;
+}
+
+.info-card h2 {
+  margin-bottom: 1rem;
+}
+
+.illustration img {
+  max-width: 100%;
+  height: auto;
 }
 
 .form-control {
-  border-radius: 0.25rem;
-  padding: 10px;
-  font-size: 14px;
+  border-radius: 4px;
+  padding: 10px 10px 10px 40px;
+  font-size: 16px;
+  margin-bottom: 1rem;
+  position: relative;
 }
 
-.btn-dark .mat-spinner {
-  color: #ffffff; /* Couleur du spinner blanche */
-  position: absolute; /* Positionnement absolu pour centrer */
+.form-group.position-relative {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #aaa;
+}
+
+.icon-eye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #f8c00e;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 100%;
+  color: black;
+}
+
+.btn-primary:hover {
+  background-color: #d1a800;
+}
+
+.text-muted {
+  color: #6c757d;
+}
+
+.text-decoration-underline {
+  text-decoration: underline;
+}
+
+.mat-spinner {
+  color: white;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }

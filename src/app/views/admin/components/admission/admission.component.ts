@@ -53,6 +53,7 @@ export class AdmissionComponent implements OnInit {
   fileNames: { [key: string]: string } = {};
   bacFileName = '';
   campusFranceFileName = '';
+  yearFileName ='';
 
   @ViewChild('bacFileInput') bacFileInput: ElementRef;
   @ViewChild('campusFranceFileInput') campusFranceFileInput: ElementRef;
@@ -65,6 +66,18 @@ export class AdmissionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initializeForm();
+    this.user$ = this.auth.authenticatedUser$;
+    this.user$.subscribe(user => {
+      if (user) {
+        console.log('User logged in:', user);
+      } else {
+        console.log('No user logged in');
+      }
+    });
+  }
+
+  initializeForm(): void {
     this.educationForm = this.fb.group({
       country: ['', Validators.required],
       admissionType: ['', Validators.required],
@@ -92,19 +105,33 @@ export class AdmissionComponent implements OnInit {
       averageYear5Sem2: [''],
       comments: [''],
       bacUrl: [''],
-      campusFranceUrl: [''],
-      // Add more fields for document URLs if needed
+      bac2Url: [''],
+      term2nd1Url: [''],
+      term2nd2Url: [''],
+      term2nd3Url: [''],
+      termPremiere1Url: [''],
+      termPremiere2Url: [''],
+      termPremiere3Url: [''],
+      termTerminale1Url: [''],
+      termTerminale2Url: [''],
+      termTerminale3Url: [''],
+      year1Sem1Url: [''],
+      year1Sem2Url: [''],
+      year2Sem1Url: [''],
+      year2Sem2Url: [''],
+      year3Sem1Url: [''],
+      year3Sem2Url: [''],
+      year4Sem1Url: [''],
+      year4Sem2Url: [''],
+      year5Sem1Url: [''],
+      year5Sem2Url: [''],
+      bacType: ['', Validators.required]
     });
-
-    this.user$ = this.auth.authenticatedUser$;
-    this.user$.subscribe(user => {
-      if (user) {
-        // Votre logique utilisateur ici
-      }
-    });
+    console.log('Form initialized:', this.educationForm);
   }
 
   onCountryChange(value: string): void {
+    console.log('Country changed:', value);
     this.selectedCountry = value;
     this.educationForm.get('admissionType').reset();
     this.selectedAdmissionType = null;
@@ -143,10 +170,14 @@ export class AdmissionComponent implements OnInit {
     if (input.files.length > 0) {
       const file = input.files[0];
       this.fileNames[key] = file.name;
-      // Save file for uploading later
-      this.uploadFile(file, key);
+      this.uploadFile(file, key).then((url) => {
+        console.log(`File uploaded. URL: ${url}`); // Afficher l'URL retournée dans la console
+      }).catch(error => {
+        console.error('File upload error:', error);
+      });
     }
   }
+
 
   onBacFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -158,31 +189,36 @@ export class AdmissionComponent implements OnInit {
     }
   }
 
-  onCampusFranceFileSelected(event: Event): void {
+  onBac2FileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files.length > 0) {
       const file = input.files[0];
       this.campusFranceFileName = file.name;
       // Save file for uploading later
-      this.uploadFile(file, 'campusFrance');
+      this.uploadFile(file, 'bac2');
     }
   }
 
-  async uploadFile(file: File, documentType: string): Promise<void> {
+  async uploadFile(file: File, documentType: string): Promise<string> {
     const currentUser = await this.auth.getCurrentUser();
     if (currentUser) {
       const userId = currentUser.uid;
       const fileUrl = await this.admissionService.uploadDocument(file, userId, documentType);
-      // Save file URL in the form data
-      this.educationForm.get(documentType + 'Url').setValue(fileUrl);
+      this.educationForm.get(documentType + 'Url').setValue(fileUrl); // Stocker l'URL dans le formulaire
+      return fileUrl; // Retourner l'URL
     }
+    throw new Error('User not authenticated');
   }
+
+
+
 
   async submitForm(): Promise<void> {
     if (this.educationForm.valid) {
       try {
         const formData = this.educationForm.value;
         await this.admissionService.submitAdmissionForm(formData);
+        console.log(formData);
         this.snackBar.open('Demande d\'admission soumise', 'Fermer', {
           duration: 3000,
         });
